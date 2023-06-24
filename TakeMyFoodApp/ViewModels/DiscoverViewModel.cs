@@ -55,5 +55,17 @@ public partial class DiscoverViewModel : ObservableObject
   {
     IsBusy = true;
   }
+
+    [RelayCommand]
+    async Task Delete(UiProduct ui)
+    {
+        await App.ProductService.DeleteProductAsync(ui.Id);
+        if (Products.Contains(ui))
+        {
+            Products.Remove(ui);
+            await App.ProductService.DeleteProductAsync(ui.Id);
+            
+        }
+    }
 }
 

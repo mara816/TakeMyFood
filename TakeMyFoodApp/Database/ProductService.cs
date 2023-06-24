@@ -11,39 +11,39 @@ namespace TakeMyFoodApp.Database
   public class ProductService : IProductRepository
   {
 
-    public SQLiteAsyncConnection database;
+        private readonly SQLiteAsyncConnection Database;
     public ProductService(string dbPath)
     {
-      database = new SQLiteAsyncConnection(dbPath);
-      database.CreateTableAsync<Product>().Wait();
+      Database = new SQLiteAsyncConnection(dbPath);
+      Database.CreateTableAsync<Product>().Wait();
     }
     public async Task<bool> AddUpdateProductAsync(Product product)
     {
       if (product.Id > 0)
       {
-        await database.UpdateAsync(product);
+        await Database.UpdateAsync(product);
       }
       else
       {
-        await database.InsertAsync(product);
+        await Database.InsertAsync(product);
       }
       return await Task.FromResult(true);
     }
 
     public async Task<bool> DeleteProductAsync(int id)
     {
-      await database.DeleteAsync<Product>(id);
+      await Database.DeleteAsync<Product>(id);
       return await Task.FromResult(true);
     }
 
     public async Task<Product> GetProductAsync(int id)
     {
-      return await database.Table<Product>().Where(p => p.Id == id).FirstOrDefaultAsync();
+      return await Database.Table<Product>().Where(p => p.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Product>> GetProductAsync()
     {
-      return await Task.FromResult(await database.Table<Product>().ToListAsync());
+      return await Task.FromResult(await Database.Table<Product>().ToListAsync());
     }
   }
 }

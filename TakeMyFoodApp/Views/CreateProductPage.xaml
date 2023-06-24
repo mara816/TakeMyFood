@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:TakeMyFoodApp.ViewModels"
              x:DataType="viewmodel:CreateProductViewModel">
 
-  <Grid RowDefinitions="50,50,80,100"
+  <Grid RowDefinitions="50,50,50,80,100"
         ColumnDefinitions="*, Auto"
         Padding="10">
 
@@ -18,7 +18,11 @@
            Text="{Binding Tag}"
            Placeholder="Tag"/>
 
-    <Editor Grid.Row="2" Grid.ColumnSpan="2"
+        <Entry Grid.Row="2" Grid.ColumnSpan="2"
+           Text="{Binding Price}"
+           Placeholder="Price"/>
+
+        <Editor Grid.Row="3" Grid.ColumnSpan="2"
            Text="{Binding Description}"
            Placeholder="Description"
            AutoSize="TextChanges"/>
@@ -63,7 +67,7 @@
 
     </CollectionView>-->
 
-    <Button Grid.Row="3" Grid.ColumnSpan="2"
+    <Button Grid.Row="4" Grid.ColumnSpan="2"
             Text="CREATE"
             FontSize="30"
             VerticalOptions="Center"
