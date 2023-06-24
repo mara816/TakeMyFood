@@ -4,24 +4,24 @@ namespace TakeMyFoodApp;
 
 public partial class App : Application
 {
-  public static ProductService productService;
+    public static ProductService productService;
 
-  public static ProductService ProductService
-  {
-    get
+    public static ProductService ProductService
     {
-      if (productService == null)
-      {
-        productService = new ProductService(
-          Path.Combine(Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)), "ProductDB.db3"));
-      }
-      return productService;
+        get
+        {
+            if (productService == null)
+            {
+                productService = new ProductService(
+                  Path.Combine(Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)), "ProductDB.db3"));
+            }
+            return productService;
+        }
     }
-  }
-	public App()
-	{
-		InitializeComponent();
+    public App()
+    {
+        InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+        MainPage = new AppShell();
+    }
 }

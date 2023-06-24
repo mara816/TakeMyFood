@@ -7,39 +7,48 @@
              xmlns:models="clr-namespace:TakeMyFoodApp.Models"
              x:DataType="viewmodel:DiscoverViewModel">
 
-  <Grid RowDefinitions="50, *, 50"
+    <Grid RowDefinitions="50, *, 50"
         ColumnDefinitions="*, Auto"
         Padding="10">
 
-    <RefreshView Command="{Binding LoadProductCommand}"
+        <RefreshView Command="{Binding LoadProductCommand}"
                  IsRefreshing="{Binding IsBusy}"/>
 
-    <SearchBar Grid.Column="0" 
+        <SearchBar Grid.Column="0" 
                Grid.Row="0" 
                Placeholder="Search..."/>
 
-    <CollectionView Grid.Row="1" Grid.ColumnSpan="2"
+        <CollectionView Grid.Row="1" Grid.ColumnSpan="2"
                     ItemsSource="{Binding Products}">
-      <CollectionView.ItemTemplate>
-        <DataTemplate x:DataType="models:UiProduct">
-          <Grid Padding="10"
-                ColumnDefinitions="*, *">
-
-            <Image 
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:UiProduct">
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="10">
+                        <Image HeightRequest="100"
                    Source="{Binding SourceImage}"
                    Grid.Column="0"/>
-            <Label Text="{Binding Name}"
+                        <Label Text="{Binding Name}"
                      FontSize="24"
                      Grid.Column="1"/>
+                    </StackLayout>
+                    <!--<Grid Padding="10"
+                ColumnDefinitions="*, *">
 
-          </Grid>
-        </DataTemplate>
-      </CollectionView.ItemTemplate>
-    </CollectionView>
+                    <Image 
+                   Source="{Binding SourceImage}"
+                   Grid.Column="0"/>
+                        <Label Text="{Binding Name}"
+                     FontSize="24"
+                     Grid.Column="1"/>-->
 
-    <Button Grid.Column="2"
+                  <!--/>  </Grid>-->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Column="2"
             Grid.Row="0"
             Text="Add"
             Command="{Binding AddCommand}"/>
-  </Grid>
+    </Grid>
 </ContentPage>
