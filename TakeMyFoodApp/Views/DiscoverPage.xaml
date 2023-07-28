@@ -41,7 +41,7 @@
                         <!-- Content -->
                         <Border StrokeShape="RoundRectangle 5,0,0"
                                 BackgroundColor="LightCyan"
-                                StrokeThickness="0">
+                                StrokeThickness="1">
                             <Grid HeightRequest="100">
                                 <StackLayout Orientation="Horizontal">
 
