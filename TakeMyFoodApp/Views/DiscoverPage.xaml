@@ -7,74 +7,75 @@
              xmlns:models="clr-namespace:TakeMyFoodApp.Models"
              x:DataType="viewmodel:DiscoverViewModel">
 
-    <Grid RowDefinitions="50, *, 50"
+  <Grid RowDefinitions="50, *, 50"
         Padding="10">
 
-        <RefreshView Command="{Binding LoadProductCommand}"
+    <RefreshView Command="{Binding LoadProductCommand}"
                  IsRefreshing="{Binding IsBusy}" Grid.Row="0" />
-        <StackLayout Orientation="Horizontal" Grid.Column="0" >
-            <SearchBar 
+    <StackLayout Orientation="Horizontal">
+      <SearchBar 
                
                Placeholder="Search..."
-                Margin="0,0,0,8"/>
-            <Button
+                Margin="0,0,0,8"
+               HorizontalOptions="FillAndExpand"/>
+      <Button
             Text="Add"
             HeightRequest="38"
                 FontSize="12"
             Command="{Binding AddCommand}"/>
-        </StackLayout>
+    </StackLayout>
 
 
-        <CollectionView Grid.Row="1" Grid.ColumnSpan="2"
+    <CollectionView Grid.Row="1" Grid.ColumnSpan="2"
                     ItemsSource="{Binding Products}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:UiProduct">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete"
+      <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="models:UiProduct">
+          <SwipeView>
+            <SwipeView.RightItems>
+              <SwipeItems>
+                <SwipeItem Text="Delete"
                        BackgroundColor="Red"
                                            Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type viewmodel:DiscoverViewModel}}}"
                                            CommandParameter="{Binding .}"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <!-- Content -->
-                        <Border StrokeShape="RoundRectangle 5,0,0"
+              </SwipeItems>
+            </SwipeView.RightItems>
+            <!-- Content -->
+            <Border StrokeShape="RoundRectangle 5,0,0"
                                 BackgroundColor="LightCyan"
                                 StrokeThickness="1">
-                            <Grid HeightRequest="100">
-                                <StackLayout Orientation="Horizontal">
+              <Grid HeightRequest="100">
+                <StackLayout Orientation="Horizontal">
 
 
-                                    <Image HeightRequest="100"
+                  <Image HeightRequest="100"
                                Source="{Binding SourceImage}"/>
-                                    <Grid RowDefinitions=".70*, auto,auto">
-                                        <Label Text="{Binding Name}"
+                  <Grid RowDefinitions=".70*, auto,auto">
+                    <Label Text="{Binding Name}"
                                        Grid.Row="0"
                                        FontSize="24"
                                        Margin="10,0,0,0"/>
-                                        <Label Text="{Binding Description}"
+                    <Label Text="{Binding Description}"
                                        Margin="10,0,0,0"
                                       
                                FontSize="16"
                                         Grid.Row="1"/>
 
-                                        <Label Text="{Binding Price}"
+                    <Label Text="{Binding Price}"
                                        Margin="10,0,0,0"
                                       
                                FontSize="16"
                                         Grid.Row="2"/>
-                                    </Grid>
+                  </Grid>
 
 
-                                </StackLayout>
-                            </Grid>
-                        </Border>
+                </StackLayout>
+              </Grid>
+            </Border>
 
 
 
-                    </SwipeView>
-                    <!--<Grid Padding="10"
+          </SwipeView>
+          <!--<Grid Padding="10"
                 ColumnDefinitions="*, *">
 
                     <Image 
@@ -84,11 +85,11 @@
                      FontSize="24"
                      Grid.Column="1"/>-->
 
-                    <!--/>  </Grid>-->
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+          <!--/>  </Grid>-->
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
 
 
-    </Grid>
+  </Grid>
 </ContentPage>

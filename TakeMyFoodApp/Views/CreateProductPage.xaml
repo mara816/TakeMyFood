@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:TakeMyFoodApp.ViewModels"
              x:DataType="viewmodel:CreateProductViewModel">
 
-  <Grid RowDefinitions="50,50,50,80,100"
+  <!--<Grid RowDefinitions="50,50,50,80,100"
         ColumnDefinitions="*, Auto"
         Padding="10">
 
@@ -27,51 +27,25 @@
            Placeholder="Description"
            AutoSize="TextChanges"/>
 
-    <!--<Entry Grid.Row="3" Grid.ColumnSpan="2"
-           Grid.Column="0"
-           Text="{Binding Ingredient}"
-           Placeholder="Ingredient"/>-->
 
-    <!--<Button Grid.Row="3"
-            Grid.Column="1"
-            Text="Add"
-            BackgroundColor="Green"
-            Padding="10,10,10,10"
-            VerticalOptions="Center"
-
-            Command="{Binding AddIngredientCommand}"/>-->
-
-    <!--<CollectionView Grid.Row="3" Grid.ColumnSpan="2"
-                    ItemsSource="{Binding Ingredients}">
-      <CollectionView.ItemTemplate>
-        <DataTemplate x:DataType="{x:Type x:String}">
-          <SwipeView>
-            <SwipeView.RightItems>
-              <SwipeItems>
-                <SwipeItem Text="Delete"
-                           BackgroundColor="Red"
-                           Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type viewmodel:CreateProductViewModel}}}"
-                           CommandParameter="{Binding .}"/>
-              </SwipeItems>
-            </SwipeView.RightItems>
-            <Grid Padding="0,5">
-              <Frame>
-                <Label Text="{Binding .}"
-                       FontSize="24"/>
-              </Frame>
-            </Grid>
-
-          </SwipeView>
-        </DataTemplate>
-      </CollectionView.ItemTemplate>
-
-    </CollectionView>-->
 
     <Button Grid.Row="4" Grid.ColumnSpan="2"
             Text="CREATE"
             FontSize="30"
             VerticalOptions="Center"
             Command="{Binding CreateCommand}"/>
-  </Grid>
+  </Grid>-->
+  <StackLayout Padding="10">
+    <Entry Placeholder="Name" Text="{Binding Name}" />
+    <Entry Placeholder="Description" Text="{Binding Description}" />
+    <Entry Placeholder="Tag" Text="{Binding Tag}" />
+    <Entry Placeholder="Price" Text="{Binding Price}" Keyboard="Numeric" />
+
+    <Button Text="Pick Image" Command="{Binding PickImageCommand}" />
+    <Button Text="Take Picture" Command="{Binding TakePictureCommand}" />
+    <Image Source="{Binding SelectedImage}" HeightRequest="200" />
+
+    <Button Text="Create" Command="{Binding CreateCommand}" />
+  </StackLayout>
 
 </ContentPage>

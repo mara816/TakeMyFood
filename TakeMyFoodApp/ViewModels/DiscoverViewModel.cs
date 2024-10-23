@@ -14,7 +14,7 @@ public partial class DiscoverViewModel : ObservableObject
   private ObservableCollection<UiProduct> products;
 
 
-  public DiscoverViewModel( )
+  public DiscoverViewModel()
   {
     Products = new ObservableCollection<UiProduct>();
   }
@@ -22,7 +22,7 @@ public partial class DiscoverViewModel : ObservableObject
   [RelayCommand]
   async Task LoadProduct()
   {
-         IsBusy = true; 
+    IsBusy = true;
     try
     {
       Products.Clear();
@@ -48,7 +48,7 @@ public partial class DiscoverViewModel : ObservableObject
   [RelayCommand]
   async Task Add()
   {
-    await Shell.Current.GoToAsync( nameof( CreateProductPage ) );
+    await Shell.Current.GoToAsync(nameof(CreateProductPage));
   }
 
   public void OnAppearing()
@@ -56,16 +56,15 @@ public partial class DiscoverViewModel : ObservableObject
     IsBusy = true;
   }
 
-    [RelayCommand]
-    async Task Delete(UiProduct ui)
+  [RelayCommand]
+  async Task Delete(UiProduct ui)
+  {
+    await App.ProductService.DeleteProductAsync(ui.Id);
+    if (Products.Contains(ui))
     {
-        await App.ProductService.DeleteProductAsync(ui.Id);
-        if (Products.Contains(ui))
-        {
-            Products.Remove(ui);
-            await App.ProductService.DeleteProductAsync(ui.Id);
-            
-        }
+      Products.Remove(ui);
+      await App.ProductService.DeleteProductAsync(ui.Id);
     }
+  }
 }
 
